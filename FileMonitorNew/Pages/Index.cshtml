@@ -1,0 +1,48 @@
+﻿@page
+@model IndexModel
+@using System.IO
+<div class="row">
+    <div class="col-md-6">
+        <h2>Changes since last run:</h2>
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>Type</th>
+                    <th>Name</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var file in Model.NewFiles)
+                {
+                    <tr>
+                        <td>New file</td>
+                        <td>@file</td>
+                    </tr>
+                }
+                @foreach (var file in Model.ModifiedFiles)
+                {
+                    <tr>
+                        <td>Modified file</td>
+                        <td>@file</td>
+                    </tr>
+                }
+                @foreach (var file in Model.DeletedFiles)
+                {
+                    <tr>
+                        <td>Deleted file</td>
+                        <td>@file</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+    <div class="col-md-6">
+        <form method="post">
+            <div class="form-group">
+                <label for="folderPath">Folder Path:</label>
+                <input type="text" class="form-control" id="folderPath" name="FolderPath" value="@Model.FolderPath" />
+            </div>
+            <button type="submit" class="btn btn-primary">Check Changes</button>
+        </form>
+    </div>
+</div>
